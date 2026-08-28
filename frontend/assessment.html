@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk Assessment — Landslide Guardian</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">⛰️ Landslide Guardian</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="assessment.html" class="active">Risk Assessment</a></li>
+      <li><a href="map.html">Risk Map</a></li>
+      <li><a href="alerts.html">Alerts & SOS</a></li>
+      <li><a href="history.html">History</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h1 style="font-size: 1.75rem; margin-bottom: 0.5rem; color: #fff;">AI Landslide Risk Assessment</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Select or search for any location in North-Eastern India to compute real-time landslide risk using explainable machine learning.</p>
+
+    <!-- Location Selector Grid -->
+    <div class="grid-2" style="margin-bottom: 2rem;">
+      <div class="card">
+        <div class="card-title" style="margin-bottom: 0.75rem;">1. Select Predefined NER Location</div>
+        <div class="chip-container" id="presetChips">
+          <!-- Populated by JS -->
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <div class="card-title" style="margin-bottom: 0.5rem;">Or Enter Coordinates Manually</div>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <input type="number" id="inputLat" class="form-control" placeholder="Latitude (e.g. 27.3389)" step="0.0001">
+            <input type="number" id="inputLon" class="form-control" placeholder="Longitude (e.g. 88.6065)" step="0.0001">
+          </div>
+          <input type="text" id="inputName" class="form-control" placeholder="Location Name (e.g. West Sikkim)" style="margin-bottom: 0.75rem;">
+          <button class="btn btn-primary" style="width: 100%;" onclick="runCustomAssessment()">Run AI Risk Prediction</button>
+        </div>
+      </div>
+
+      <!-- Prediction Result Display -->
+      <div class="card" id="resultContainer">
+        <div class="card-header">
+          <span class="card-title">Assessment Output</span>
+          <span class="badge" id="resBadge">Awaiting Input</span>
+        </div>
+        
+        <div id="resPlaceholder" style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
+          Select a location from the left to fetch live environmental parameters and evaluate landslide probability.
+        </div>
+
+        <div id="resBody" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 id="resLocTitle" style="color: #fff; font-size: 1.5rem;">–</h2>
+            <div style="font-size: 2.25rem; font-weight: 800;" id="resScoreText">0%</div>
+          </div>
+
+          <div style="background: var(--bg-card); padding: 0.75rem; border-radius: 8px; margin-bottom: 1rem;">
+            <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Official Recommendation</div>
+            <div id="resRecommendation" style="font-size: 0.9rem; color: #fff; margin-top: 0.25rem;">–</div>
+          </div>
+
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem;">
+            Why is this area at risk? (Key Factors)
+          </div>
+          <div id="resFactorsList"></div>
+
+          <!-- SOS Broadcast Action if High/Critical -->
+          <div id="resSosOption" style="margin-top: 1rem; display: none;">
+            <button class="btn btn-danger" style="width: 100%;" onclick="dispatchDirectSOS()">
+              🚨 Send Emergency Landslide SMS Alert To Residents
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Landslide Guardian — SIH 2026 PS 26001</p>
+  </footer>
+
+  <script src="api.js"></script>
+  <script src="assessment.js"></script>
+</body>
+</html>

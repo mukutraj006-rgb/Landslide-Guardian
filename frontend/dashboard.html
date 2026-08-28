@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Disaster Management Dashboard — Landslide Guardian</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Chart.js and Leaflet.js CDNs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">⛰️ Landslide Guardian</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="assessment.html">Risk Assessment</a></li>
+      <li><a href="map.html">Risk Map</a></li>
+      <li><a href="alerts.html">Alerts & SOS</a></li>
+      <li><a href="history.html">History</a></li>
+    </ul>
+    <span class="api-status-badge" id="dataModeBadge">Checking API...</span>
+  </nav>
+
+  <main class="container">
+    <!-- Top Risk Banner -->
+    <div class="risk-banner" id="dashboardBanner">
+      <div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase;">Current Monitored Sector</div>
+        <h2 id="dashLocation" style="font-size: 1.75rem; margin-top: 0.25rem;">Gangtok, Sikkim</h2>
+        <p id="dashRecommendation" style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.25rem;">Live monitoring active.</p>
+      </div>
+      <div style="text-align: right;">
+        <div class="risk-banner-score" id="dashScore" style="color: var(--risk-high);">78%</div>
+        <span class="badge badge-high" id="dashLevelBadge">HIGH RISK</span>
+      </div>
+    </div>
+
+    <!-- Environmental Telemetry Cards -->
+    <div class="grid-4" style="margin-bottom: 1.5rem;">
+      <div class="metric-card">
+        <span class="metric-label">24h Rainfall</span>
+        <span class="metric-val" id="metricRain">68.4 mm</span>
+        <span class="metric-source" id="metricRainSrc">Live Open-Meteo API</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Soil Moisture (Est.)</span>
+        <span class="metric-val" id="metricMoisture">82.0 %</span>
+        <span class="metric-source">Environmental Dataset</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Terrain Slope</span>
+        <span class="metric-val" id="metricSlope">36.0°</span>
+        <span class="metric-source">NER Topographic Model</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">Elevation</span>
+        <span class="metric-val" id="metricElevation">1,650 m</span>
+        <span class="metric-source">SRTM Elevation Lookup</span>
+      </div>
+    </div>
+
+    <!-- Map and Charts Grid -->
+    <div class="grid-2" style="margin-bottom: 1.5rem;">
+      <!-- Interactive Sector Map -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Regional Risk Map</span>
+          <a href="map.html" style="font-size: 0.8rem; color: var(--accent-blue);">Expand Map &rarr;</a>
+        </div>
+        <div id="dashMap" style="height: 280px; width: 100%;"></div>
+      </div>
+
+      <!-- Trend Chart -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">24-Hour Rainfall & Risk Progression</span>
+          <span class="badge badge-moderate">Multi-Axis</span>
+        </div>
+        <div style="height: 280px;">
+          <canvas id="trendChart"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Action Row: Explainability & SOS Dispatch -->
+    <div class="grid-2">
+      <!-- Why at risk -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Explainable AI: Contributing Risk Factors</span>
+        </div>
+        <div id="explainFactors">
+          <!-- Filled dynamically by dashboard.js -->
+        </div>
+      </div>
+
+      <!-- Live SOS Emergency Dispatch Status -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Emergency Citizen SOS Status</span>
+          <span class="badge badge-high" id="sosStatusBadge">READY</span>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          When an area exceeds <strong>61% Risk Score</strong>, an automated emergency broadcast is prepared for registered phone numbers in this sector.
+        </p>
+        <button class="btn btn-danger" style="width: 100%;" onclick="triggerSectorSOS()">
+          📢 Broadcast Emergency SOS to Registered Citizens
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Landslide Guardian — AI Early Warning Prototype • SIH 2026</p>
+  </footer>
+
+  <script src="api.js"></script>
+<script src="dashboard.js"></script>
+</body>
+</html>

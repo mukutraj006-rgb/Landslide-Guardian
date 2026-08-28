@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landslide Guardian — AI Early Warning System for NER</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      ⛰️ Landslide Guardian
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="assessment.html">Risk Assessment</a></li>
+      <li><a href="map.html">Risk Map</a></li>
+      <li><a href="alerts.html">Alerts & SOS</a></li>
+      <li><a href="history.html">History</a></li>
+    </ul>
+    <span class="api-status-badge">SIH 2026 • PS 26001</span>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <h1>Landslide Early Warning & Risk Monitoring</h1>
+      <p>A software-only, explainable AI early-warning system designed specifically for the rugged terrain and high-rainfall regions of North-Eastern India.</p>
+      <div class="btn-group">
+        <a href="assessment.html" class="btn btn-primary">🔍 Check Area Risk</a>
+        <a href="dashboard.html" class="btn btn-secondary">📊 Open Live Dashboard</a>
+        <a href="alerts.html" class="btn btn-danger">🚨 SOS Phone Broadcast</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section style="margin-bottom: 2.5rem;">
+      <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--accent-blue);">System Pipeline & Methodology</h2>
+      <div class="grid-4">
+        <div class="card">
+          <div class="card-title">1. Data Collection</div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Fetches live rainfall, precipitation intensity, elevation, and terrain slope from environmental APIs & datasets.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">2. Normalization</div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Aggregates 1h, 3h, 24h accumulated rainfall, soil moisture indicators, and slope gradients.</p>
+        </div>
+        <div class="card">
+          <div class="card-title">3. Explainable AI</div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Scikit-learn Random Forest model computes probability and categorizes risk (Low, Moderate, High, Critical).</p>
+        </div>
+        <div class="card">
+          <div class="card-title">4. Citizen SOS Alerts</div>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Dispatches emergency SMS alerts and dashboard warnings directly to registered citizens and response teams.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-bottom: 2rem;">
+      <div class="card-header">
+        <h3 style="color: #fff;">NER Focus Demo Locations</h3>
+        <span class="badge badge-low">Live Monitored</span>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Click any state capital to inspect pre-configured geological parameters:</p>
+      <div class="chip-container">
+        <a href="assessment.html?loc=Gangtok" class="chip">Gangtok (Sikkim)</a>
+        <a href="assessment.html?loc=Shillong" class="chip">Shillong (Meghalaya)</a>
+        <a href="assessment.html?loc=Aizawl" class="chip">Aizawl (Mizoram)</a>
+        <a href="assessment.html?loc=Kohima" class="chip">Kohima (Nagaland)</a>
+        <a href="assessment.html?loc=Itanagar" class="chip">Itanagar (Arunachal)</a>
+        <a href="assessment.html?loc=Guwahati" class="chip">Guwahati (Assam)</a>
+        <a href="assessment.html?loc=Imphal" class="chip">Imphal (Manipur)</a>
+        <a href="assessment.html?loc=Agartala" class="chip">Agartala (Tripura)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Landslide Guardian — AI Early Warning Prototype • Built for SIH 2026 • 100% Software Only</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts & Citizen Phone SOS — Landslide Guardian</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">⛰️ Landslide Guardian</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="assessment.html">Risk Assessment</a></li>
+      <li><a href="map.html">Risk Map</a></li>
+      <li><a href="alerts.html" class="active">Alerts & SOS</a></li>
+      <li><a href="history.html">History</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h1 style="font-size: 1.75rem; color: #fff; margin-bottom: 0.5rem;">Citizen SOS & Early Warning Center</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Register phone numbers to receive automated SMS alerts when landslide risk in the sector exceeds safety thresholds.</p>
+
+    <!-- Top Grid: Register Citizen & Simulated Phone Preview -->
+    <div class="grid-2" style="margin-bottom: 2rem;">
+      <!-- Citizen Registration Form -->
+      <div class="card">
+        <div class="card-title" style="margin-bottom: 0.75rem;">📱 Register for Emergency Phone SOS Alerts</div>
+        <form id="sosRegisterForm" onsubmit="handleCitizenRegister(event)">
+          <div style="margin-bottom: 0.75rem;">
+            <label style="font-size: 0.8rem; color: var(--text-muted);">Full Name</label>
+            <input type="text" id="regName" class="form-control" placeholder="e.g. Tenzing Norbu" required>
+          </div>
+          <div style="margin-bottom: 0.75rem;">
+            <label style="font-size: 0.8rem; color: var(--text-muted);">Phone Number (SMS / WhatsApp Alerts)</label>
+            <input type="tel" id="regPhone" class="form-control" placeholder="+91 98765 43210" required>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.8rem; color: var(--text-muted);">Residential Sector / City</label>
+            <select id="regLocation" class="form-control">
+              <option value="Gangtok, Sikkim">Gangtok, Sikkim</option>
+              <option value="Shillong, Meghalaya">Shillong, Meghalaya</option>
+              <option value="Aizawl, Mizoram">Aizawl, Mizoram</option>
+              <option value="Kohima, Nagaland">Kohima, Nagaland</option>
+              <option value="Itanagar, Arunachal Pradesh">Itanagar, Arunachal Pradesh</option>
+              <option value="Guwahati, Assam">Guwahati, Assam</option>
+              <option value="Imphal, Manipur">Imphal, Manipur</option>
+              <option value="Agartala, Tripura">Agartala, Tripura</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Save Registered Citizen</button>
+        </form>
+      </div>
+
+      <!-- Live Mobile Phone SMS Simulator -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Live Registered Citizen Phone Mockup</span>
+          <span class="badge badge-critical" id="smsStatusDot">LIVE SMS ENGINE</span>
+        </div>
+        
+        <div class="phone-mockup">
+          <div class="phone-header">DISASTER ALERT BROADCAST • EMERGENCY CELL</div>
+          <div class="sms-bubble" id="phoneBubble">
+            <strong>🚨 EMERGENCY LANDSLIDE ALERT</strong><br>
+            <em>"There's a Landslide risk in your area (Gangtok, Sikkim) so stay alert. Saturated soil and intense rainfall detected. Move away from steep cut-slopes."</em>
+            <div style="font-size: 0.7rem; color: #94a3b8; margin-top: 6px; text-align: right;" id="phoneTimestamp">Just now</div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 0.75rem;">
+          <button class="btn btn-danger" onclick="triggerManualSOSBroadcast()">
+            📢 Dispatch SOS Broadcast Test Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active System Alerts Feed -->
+    <div class="card">
+      <div class="card-header">
+        <h3 style="color: #fff; font-size: 1.1rem;">Active Warning Feeds (Risk &ge; 61%)</h3>
+        <span class="badge badge-high" id="activeCountBadge">2 Active Warnings</span>
+      </div>
+      <div id="alertsFeedContainer">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Landslide Guardian — Citizen SOS & Early Warning Dispatch</p>
+  </footer>
+
+  <script src="api.js"></script>
+  <script src="alerts.js"></script>
+</body>
+</html>
